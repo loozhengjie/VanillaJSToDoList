@@ -1,0 +1,62 @@
+/* CSS reset */
+*, *::before, *::after{
+    box-sizing: border-box;
+}
+
+button:focus, input:focus{
+    outline: none;
+}
+
+/* Debug */
+.debug-border{
+    border: 2px solid black;
+}
+
+.debug-border.red{
+    border: 2px solid red;
+}
+
+.debug-border.green{
+    border: 2px solid green;
+}
+
+.debug-border.blue{
+    border: 2px solid blue;
+}
+
+/* Body defaults */
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Utility */
+.container{
+    margin: 0.5em 0.5em ;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Header */
+.header__logo{
+    font-size: 5rem;
+    color: rgb(202, 39, 39);
+}
+
+/* Input field */
+.input__field{
+    width: 100%;
+    font-size: 1.5rem;
+    padding: 0.5em;
+    padding-left: 3em;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 16px 16px 16px 60px;
+}
+
+.input__field::placeholder{
+    color: rgb(165, 165, 165);
+}
