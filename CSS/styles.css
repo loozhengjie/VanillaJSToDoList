@@ -7,8 +7,13 @@ button:focus, input:focus{
     outline: none;
 }
 
+ul{
+    list-style: none;
+    padding-left: 0;
+}
+
 /* Debug */
-.debug-border{
+/* .debug-border{
     border: 2px solid black;
 }
 
@@ -22,7 +27,7 @@ button:focus, input:focus{
 
 .debug-border.blue{
     border: 2px solid blue;
-}
+} */
 
 /* Body defaults */
 body{
@@ -48,15 +53,28 @@ body{
 }
 
 /* Input field */
+.input{
+    gap: 0;
+}
+
 .input__field{
     width: 100%;
     font-size: 1.5rem;
-    padding: 0.5em;
-    padding-left: 3em;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     padding: 16px 16px 16px 60px;
 }
 
 .input__field::placeholder{
     color: rgb(165, 165, 165);
+}
+
+.tasks{
+    width: 100%;
+}
+
+.tasks__card{
+    width: 100%;
+    font-size: 1.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 16px 16px 16px 60px;
 }
