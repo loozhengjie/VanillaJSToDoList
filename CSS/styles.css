@@ -44,6 +44,8 @@ body{
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    width: 100%;
+    max-width: 600px;
 }
 
 /* Header */
@@ -55,11 +57,16 @@ body{
 /* Input field */
 .input{
     gap: 0;
+    width: 100%;
+}
+
+.input__form{
+    width: 100%;
 }
 
 .input__field{
     width: 100%;
-    font-size: 1.5rem;
+    font-size: 24px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     padding: 16px 16px 16px 60px;
 }
@@ -70,11 +77,39 @@ body{
 
 .tasks{
     width: 100%;
+    margin: 0;
 }
 
 .tasks__card{
     width: 100%;
     font-size: 1.5rem;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border: 0.5px solid rgb(177, 173, 173);
+    border-top: none;
     padding: 16px 16px 16px 60px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.task__deleteButton{
+    color: rgb(165, 165, 165);
+}
+
+/* Details */
+.details{
+    border: 0.5px solid rgb(177, 173, 173);
+    border-top: none;
+    margin: 0.5em 0.5em;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    max-width: 600px;
+    padding: 0 2em;
+}
+
+.details__list{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
 }
