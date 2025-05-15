@@ -13,7 +13,7 @@ ul{
 }
 
 /* Debug */
-/* .debug-border{
+.debug-border{
     border: 2px solid black;
 }
 
@@ -27,7 +27,7 @@ ul{
 
 .debug-border.blue{
     border: 2px solid blue;
-} */
+}
 
 /* Body defaults */
 body{
@@ -62,6 +62,14 @@ body{
 
 .input__form{
     width: 100%;
+    position: relative;
+}
+
+.input__dropdown{
+    display: none;
+    position: absolute;
+    left: 20px;
+    top: 20px;
 }
 
 .input__field{
@@ -75,6 +83,7 @@ body{
     color: rgb(165, 165, 165);
 }
 
+/* Tasks */
 .tasks{
     width: 100%;
     margin: 0;
@@ -113,3 +122,6 @@ body{
     justify-content: space-between;
     width: 100%;
 }
+
+
+

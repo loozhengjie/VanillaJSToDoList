@@ -3,27 +3,11 @@ const formInput = document.querySelector(".input__field");
 
 const taskContainer = document.querySelector(".tasks");
 
+const dropDown = document.querySelector(".input__dropdown");
+
 let taskList = [];
 
-form.addEventListener("submit", function(e){
-    // Prevent Reset
-    e.preventDefault();
-
-    // Cache the submit value
-    const submitValue = e.target.elements["task"].value;
-    // console.log(e, e.target.elements["task"].value);
-
-    // Check if its empty
-    if (submitValue.trim() == "") return;
-
-    // Remove the form shadow
-    formInput.style.boxShadow = "none";
-
-    e.target.elements["task"].value = "";
-
-    // Add the task to the array
-    taskList.push(submitValue);
-
+function createTaskCard(task){
     // Create a task card element
     let taskCard = document.createElement("li");
     taskCard.classList.add("tasks__card");
@@ -33,7 +17,7 @@ form.addEventListener("submit", function(e){
 
     // Create task name child element under task card
     let taskName = document.createElement("label");
-    taskName.textContent = submitValue;
+    taskName.textContent = task;
     taskCard.appendChild(taskName);
 
     // When the task card is hovered
@@ -60,6 +44,43 @@ form.addEventListener("submit", function(e){
 
         // Remove the delete button
         deleteButton.remove();
-    })
+    });
+}
 
-})
+form.addEventListener("submit", function(e){
+    // Prevent Reset
+    e.preventDefault();
+
+    // Cache the submit value
+    const submitValue = e.target.elements["task"].value;
+    // console.log(e, e.target.elements["task"].value);
+
+    // Check if its empty
+    if (submitValue.trim() == "") return;
+
+    if (dropDown.style.display = "none"){
+        dropDown.style.display = "inline";
+    }
+
+    // Remove the form shadow
+    formInput.style.boxShadow = "none";
+
+    e.target.elements["task"].value = "";
+
+    // Add the task to the array
+    taskList.push(submitValue);
+
+    // Clear the container first
+    taskContainer.innerHTML = "";
+
+    // For each task available, create task card
+    taskList.forEach((task)=>{
+        createTaskCard(task);
+    });
+
+    
+});
+
+dropDown.addEventListener("click", function(e){
+
+});
