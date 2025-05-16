@@ -15,10 +15,21 @@ function createTaskCard(task){
     taskCard.classList.add("blue");
     taskContainer.appendChild(taskCard);
 
+    // Div
+    let taskDiv = document.createElement("div");
+    taskCard.appendChild(taskDiv);
+
+
+    // Create a checkbox to the card
+    let checkBox = document.createElement("input");
+    checkBox.type="checkbox";
+    taskDiv.appendChild(checkBox);
+
+
     // Create task name child element under task card
     let taskName = document.createElement("label");
     taskName.textContent = task;
-    taskCard.appendChild(taskName);
+    taskDiv.appendChild(taskName);
 
     // When the task card is hovered
     taskCard.addEventListener("mouseenter", function(e){

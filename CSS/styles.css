@@ -13,7 +13,7 @@ ul{
 }
 
 /* Debug */
-.debug-border{
+/* .debug-border{
     border: 2px solid black;
 }
 
@@ -27,7 +27,7 @@ ul{
 
 .debug-border.blue{
     border: 2px solid blue;
-}
+} */
 
 /* Body defaults */
 body{
@@ -102,6 +102,7 @@ body{
 
 .task__deleteButton{
     color: rgb(165, 165, 165);
+    font-size: 1.0rem;
 }
 
 /* Details */
