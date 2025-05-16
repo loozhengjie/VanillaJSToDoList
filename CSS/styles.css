@@ -98,11 +98,18 @@ body{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    position: relative;
 }
 
-.task__deleteButton{
+.tasks__deleteButton{
     color: rgb(165, 165, 165);
     font-size: 1.0rem;
+}
+
+.tasks__checkbox{
+    position: absolute;
+    left: 16px;
+    top: 20px;
 }
 
 /* Details */

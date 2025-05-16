@@ -15,21 +15,17 @@ function createTaskCard(task){
     taskCard.classList.add("blue");
     taskContainer.appendChild(taskCard);
 
-    // Div
-    let taskDiv = document.createElement("div");
-    taskCard.appendChild(taskDiv);
-
-
     // Create a checkbox to the card
     let checkBox = document.createElement("input");
     checkBox.type="checkbox";
-    taskDiv.appendChild(checkBox);
+    checkBox.classList.add("tasks__checkbox");
+    taskCard.appendChild(checkBox);
 
 
     // Create task name child element under task card
     let taskName = document.createElement("label");
     taskName.textContent = task;
-    taskDiv.appendChild(taskName);
+    taskCard.appendChild(taskName);
 
     // When the task card is hovered
     taskCard.addEventListener("mouseenter", function(e){
@@ -38,7 +34,7 @@ function createTaskCard(task){
         deleteButton.textContent = "x ";
         deleteButton.classList.add("debug-border");
         deleteButton.classList.add("blue");
-        deleteButton.classList.add("task__deleteButton");
+        deleteButton.classList.add("tasks__deleteButton");
         this.appendChild(deleteButton);
 
         // When the delete button is clicked
@@ -50,7 +46,7 @@ function createTaskCard(task){
 
     // When the task card is moved away from hover
     taskCard.addEventListener("mouseleave", function(e){
-        let deleteButton = this.querySelector(".task__deleteButton");
+        let deleteButton = this.querySelector(".tasks__deleteButton");
         if (!deleteButton) return;
 
         // Remove the delete button
