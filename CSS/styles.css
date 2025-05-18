@@ -3,6 +3,11 @@
     box-sizing: border-box;
 }
 
+:root{
+    --red: rgb(202, 39, 39);
+    --shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
 button:focus, input:focus{
     outline: none;
 }
@@ -51,7 +56,7 @@ body{
 /* Header */
 .header__logo{
     font-size: 5rem;
-    color: rgb(202, 39, 39);
+    color: var(--red);
 }
 
 /* Input field */
@@ -65,18 +70,27 @@ body{
     position: relative;
 }
 
-.input__dropdown{
+.input__clearButton{
     display: none;
     position: absolute;
     left: 20px;
-    top: 20px;
+    top: 25px;
+}
+
+.input__clearButton:hover{
+    cursor: pointer;
 }
 
 .input__field{
     width: 100%;
     font-size: 24px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border: 0.2px solid grey;
+    box-shadow: var(--shadow);
     padding: 16px 16px 16px 60px;
+}
+
+.input__field:focus{
+    border: 0.5px solid var(--red);
 }
 
 .input__field::placeholder{
@@ -104,6 +118,7 @@ body{
 .tasks__deleteButton{
     color: rgb(165, 165, 165);
     font-size: 1.0rem;
+    margin-top: 5px;
 }
 
 .tasks__checkbox{
@@ -112,23 +127,45 @@ body{
     top: 20px;
 }
 
-/* Details */
-.details{
-    border: 0.5px solid rgb(177, 173, 173);
-    border-top: none;
-    margin: 0.5em 0.5em;
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    max-width: 600px;
-    padding: 0 2em;
+.tasks__deleteButton:hover, .tasks__checkbox:hover{
+    cursor: pointer;
 }
 
-.details__list{
+/* Details */
+.details{
+    width: 100%;
+    border: 0.5px solid rgb(177, 173, 173);
+    border-top: none;
+    padding: 16px 16px 16px 16px;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    width: 100%;
+    align-items: center;
+    position: relative;
+    font-size: 0.9rem;
+    gap: 110px;
+}
+
+.details__filter{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.details__button{
+    padding: 0 10px;
+    /* Add a solid border to prevent pushing any neighbour buttons due to size change */
+    border: 1px solid transparent; 
+    flex: 1;
+}
+
+.details__button:hover{
+    border: 1px solid var(--red);
+    cursor: pointer;
+}
+
+.details__button--active{
+    border: 1px solid var(--red);
+    box-shadow: 0 0 3px var(--red);
 }
 
 

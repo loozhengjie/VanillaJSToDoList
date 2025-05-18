@@ -5,7 +5,8 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>To-Do-List</title>
-        <link rel="stylesheet" href="CSS/styles.css">
+        <link rel="stylesheet" href="CSS/styles.css">  
+        <script src="https://kit.fontawesome.com/5b5b9210a8.js" crossorigin="anonymous"></script>
     </head>
 
     <body class="debug-border">
@@ -15,28 +16,28 @@
 
         <section class="input container debug-border red">
             <form class="input__form debug-border green">
-                <label class="input__dropdown debug-border blue">X</label>
+                <i class="input__clearButton debug-border blue"></i>
                 <input class="input__field debug-border blue" type="text" name="task" placeholder="What needs to be done?" autocomplete="off">
             </form>
 
             <ul class="tasks debug-border green">
-                <!-- Template -->
+                <!-- Templates -->
                 <!-- <li class="tasks__card">                
                     <input type="checkbox" class="tasks__checkbox">
                     <label>task</label>
+                </li>
+
+                <li class="details">
+                    <label class="details__taskCount">x items left</label>
+                    <ul class="details__filter debug-border green">
+                        <li class="details__button">All</li>
+                        <li class="details__button">Active</li>
+                        <li class="details__button">Completed</li>
+                    </ul>
                 </li> -->
             </ul>
         </section>
 
-        <!-- <section class="details container debug-border red">
-            <div>x items left</div>
-            <ul class="details__list debug-border green">
-                <li>All</li>
-                <li>Active</li>
-                <li>Completed</li>
-            </ul>
-
-        </section> -->
 
 
     </body>
