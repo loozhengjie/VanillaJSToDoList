@@ -60,6 +60,11 @@ function CreateTaskCard(task){
         deleteButton.remove();
     });
 
+    // Create task name child element under task card
+    let taskName = document.createElement("label");
+    taskName.textContent = task.name;
+    taskCard.appendChild(taskName);
+
     // Create a checkbox to the card
     let checkBox = document.createElement("i");
     // checkBox.type="checkbox";
@@ -67,25 +72,36 @@ function CreateTaskCard(task){
     checkBox.classList.add("far", "fa-circle");
     taskCard.appendChild(checkBox);
 
+    if(task.completed == false){
+    taskName.style.textDecoration = "none";
+    checkBox.classList.add("fa-circle");
+    checkBox.classList.remove("fa-circle-check");
+    }
+    else{
+        taskName.style.textDecoration = "line-through";
+        checkBox.classList.remove("fa-circle");
+        checkBox.classList.add("fa-circle-check");
+    };
+
     // Add listener to clear / unclear task when checkbox is clicked
     // Might need to change logic here, make sure its based on the array data instead of the css style
     checkBox.addEventListener("click", function(e){
-        if(taskName.style.textDecoration == "line-through"){
+        if(task.completed == true){
             taskName.style.textDecoration = "none";
             this.classList.add("fa-circle");
             this.classList.remove("fa-circle-check");
+            task.completed = false;
+            UpdatePage();
         }
         else{
             taskName.style.textDecoration = "line-through";
             this.classList.remove("fa-circle");
             this.classList.add("fa-circle-check");
+            task.completed = true;
+            UpdatePage();
         };
     });
 
-    // Create task name child element under task card
-    let taskName = document.createElement("label");
-    taskName.textContent = task;
-    taskCard.appendChild(taskName);
 }
 
 // Function to create the details card
@@ -98,7 +114,14 @@ function CreateDetailsCard(){
     // Task count
     const taskCount = document.createElement("label");
     taskCount.classList.add("details__taskCount");
-    taskCount.textContent = `${taskList.length} item${taskList.length == 1 ? "" : "s"} left`;
+    let activeCounter = 0;
+    taskList.forEach(function(task){
+        if (task.completed==false){
+            activeCounter +=1;
+        }
+    });
+
+    taskCount.textContent = `${activeCounter} item${activeCounter == 1 ? "" : "s"} left`;
     detailCard.appendChild(taskCount);
     
     // Filter container
@@ -173,7 +196,22 @@ function UpdatePage(){
 
     // For each task available, create task card
     taskList.forEach((task)=>{
-        CreateTaskCard(task);
+        // Display all if current filter is ALL
+        if (currentFilterStatus == filterStatus.ALL){
+            CreateTaskCard(task);
+        }
+        // Display only non-completed task if current filter is ACTIVE
+        else if (currentFilterStatus == filterStatus.ACTIVE){
+            if (task.completed == false){
+                CreateTaskCard(task);
+            }
+        }
+        // Display only completed task if current filter is COMPLETED
+        else{
+            if (task.completed == true){
+                CreateTaskCard(task);
+            }
+        }
     });
 
     // Create the details card
@@ -187,7 +225,6 @@ form.addEventListener("submit", function(e){
 
     // Cache the submit value
     const submitValue = e.target.elements["task"].value;
-    // console.log(e, e.target.elements["task"].value);
 
     // Check if its empty
     if (submitValue.trim() == "") return;
@@ -195,8 +232,16 @@ form.addEventListener("submit", function(e){
     // Reset task input
     e.target.elements["task"].value = "";
 
-    // Add the task to the array
-    taskList.push(submitValue);
+    // Register the new task
+    const task= new Object();
+    task.name = submitValue;
+    task.completed = false;
+
+    // Add the newly created task to the array
+    taskList.push(task);
+
+    console.log(task);
+    console.table(taskList);
 
     // Update Page
     UpdatePage();
@@ -205,5 +250,6 @@ form.addEventListener("submit", function(e){
 
 // When the user click the "clear all" function
 clearButton.addEventListener("click", function(e){
-
+    taskList.forEach(task=> task.completed = true);
+    UpdatePage();
 });
