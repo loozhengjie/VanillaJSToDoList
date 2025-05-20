@@ -73,9 +73,9 @@ function CreateTaskCard(task){
     taskCard.appendChild(checkBox);
 
     if(task.completed == false){
-    taskName.style.textDecoration = "none";
-    checkBox.classList.add("fa-circle");
-    checkBox.classList.remove("fa-circle-check");
+        taskName.style.textDecoration = "none";
+        checkBox.classList.add("fa-circle");
+        checkBox.classList.remove("fa-circle-check");
     }
     else{
         taskName.style.textDecoration = "line-through";
@@ -86,11 +86,14 @@ function CreateTaskCard(task){
     // Add listener to clear / unclear task when checkbox is clicked
     // Might need to change logic here, make sure its based on the array data instead of the css style
     checkBox.addEventListener("click", function(e){
+        // Try get clear button
+        const clearCompletedButton = document.querySelector(".details__clearButton");
         if(task.completed == true){
             taskName.style.textDecoration = "none";
             this.classList.add("fa-circle");
             this.classList.remove("fa-circle-check");
             task.completed = false;
+
             UpdatePage();
         }
         else{
@@ -98,6 +101,7 @@ function CreateTaskCard(task){
             this.classList.remove("fa-circle");
             this.classList.add("fa-circle-check");
             task.completed = true;
+
             UpdatePage();
         };
     });
@@ -112,15 +116,19 @@ function CreateDetailsCard(){
     taskContainer.appendChild(detailCard);
 
     // Task count
-    const taskCount = document.createElement("label");
-    taskCount.classList.add("details__taskCount");
     let activeCounter = 0;
+    let completedCounter = 0;
     taskList.forEach(function(task){
-        if (task.completed==false){
-            activeCounter +=1;
+        if (task.completed == false){
+            activeCounter += 1;
+        }
+        else{
+            completedCounter += 1;
         }
     });
-
+    
+    const taskCount = document.createElement("label");
+    taskCount.classList.add("details__taskCount");
     taskCount.textContent = `${activeCounter} item${activeCounter == 1 ? "" : "s"} left`;
     detailCard.appendChild(taskCount);
     
@@ -169,10 +177,28 @@ function CreateDetailsCard(){
             filterCompletedButton.classList.add("details__button--active");
             break;
     }
+
+    const detailsClearButton = document.createElement("label");
+    detailsClearButton.textContent = "Clear Completed";
+    detailsClearButton.classList.add("details__clearButton");
+    detailCard.appendChild(detailsClearButton);
+
+    if(completedCounter == 0 && detailsClearButton.classList.contains("details__clearButton--active")){
+        detailsClearButton.classList.remove("details__clearButton--active");
+    }
+    else if(completedCounter > 0 && !detailsClearButton.classList.contains("details__clearButton--active")){
+       detailsClearButton.classList.add("details__clearButton--active");
+    }
+
+    detailsClearButton.addEventListener("click", function(){
+        taskList = taskList.filter(task => !task.completed);
+        UpdatePage();
+    })
 }
 
 // Main function to update the page
 function UpdatePage(){
+    console.table(taskList);
     // Clear the container first
     taskContainer.innerHTML = "";
 
@@ -239,9 +265,6 @@ form.addEventListener("submit", function(e){
 
     // Add the newly created task to the array
     taskList.push(task);
-
-    console.log(task);
-    console.table(taskList);
 
     // Update Page
     UpdatePage();
