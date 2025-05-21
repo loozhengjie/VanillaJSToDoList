@@ -93,6 +93,7 @@ function CreateTaskCard(task){
             this.classList.add("fa-circle");
             this.classList.remove("fa-circle-check");
             task.completed = false;
+            localStorage.setItem("taskData", JSON.stringify(taskList));
 
             UpdatePage();
         }
@@ -101,7 +102,7 @@ function CreateTaskCard(task){
             this.classList.remove("fa-circle");
             this.classList.add("fa-circle-check");
             task.completed = true;
-
+            localStorage.setItem("taskData", JSON.stringify(taskList));
             UpdatePage();
         };
     });
@@ -143,6 +144,7 @@ function CreateDetailsCard(){
     filterAllButton.textContent = "All";
     filterAllButton.addEventListener("click", function(e){
         currentFilterStatus = filterStatus.ALL;
+        localStorage.setItem("filterStatus", JSON.stringify(currentFilterStatus));
         UpdatePage();
     });
     detailsFilter.appendChild(filterAllButton);
@@ -152,6 +154,7 @@ function CreateDetailsCard(){
     filterActiveButton.textContent = "Active";
     filterActiveButton.addEventListener("click", function(e){
         currentFilterStatus = filterStatus.ACTIVE;
+        localStorage.setItem("filterStatus", JSON.stringify(currentFilterStatus));
         UpdatePage();
     });
     detailsFilter.appendChild(filterActiveButton);
@@ -161,6 +164,7 @@ function CreateDetailsCard(){
     filterCompletedButton.textContent = "Completed";
         filterCompletedButton.addEventListener("click", function(e){
         currentFilterStatus = filterStatus.COMPLETED;
+        localStorage.setItem("filterStatus", JSON.stringify(currentFilterStatus));
         UpdatePage();
     });
     detailsFilter.appendChild(filterCompletedButton);
@@ -192,6 +196,7 @@ function CreateDetailsCard(){
 
     detailsClearButton.addEventListener("click", function(){
         taskList = taskList.filter(task => !task.completed);
+        localStorage.setItem("taskData", JSON.stringify(taskList));
         UpdatePage();
     })
 }
@@ -266,6 +271,8 @@ form.addEventListener("submit", function(e){
     // Add the newly created task to the array
     taskList.push(task);
 
+    localStorage.setItem("taskData", JSON.stringify(taskList));
+
     // Update Page
     UpdatePage();
   
@@ -276,3 +283,27 @@ clearButton.addEventListener("click", function(e){
     taskList.forEach(task=> task.completed = true);
     UpdatePage();
 });
+
+
+const taskData = localStorage.getItem("taskData");
+const filterData = localStorage.getItem("filterStatus");
+
+
+if (taskData) {
+    const parsedTasked = JSON.parse(taskData);
+    taskList = parsedTasked;
+
+    if(filterData){
+        const parsedFilter = JSON.parse(filterData);
+        currentFilterStatus = parsedFilter;
+    }
+
+    UpdatePage();
+}
+else{
+    if(filterData){
+        const parsedFilter = JSON.parse(filterData);
+        currentFilterStatus = parsedFilter;
+        UpdatePage();
+    }
+}
