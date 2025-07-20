@@ -13,9 +13,6 @@ const filterStatus = Object.freeze({
     COMPLETED: "Completed"
 });
 
-// Temp, will need to load it based on local storage
-let currentFilterStatus = filterStatus.ALL;
-
 // Function to create a task card based on the task
 function CreateTaskCard(task){
     // Create a task card element
@@ -307,3 +304,24 @@ else{
         UpdatePage();
     }
 }
+
+const toggleButton = document.querySelector(".header__toggle");
+const body = document.body;
+toggleButton.addEventListener("click", ()=>{
+    body.classList.toggle("dark");
+    body.classList.toggle("light");
+
+    if (body.classList.contains("light")){
+        toggleButton.style.backgroundColor = "white";
+        toggleButton.style.color = "black";
+        toggleButton.textContent = "Toggle To Dark Mode";
+        console.log("Toggled light");
+    }
+    else if (body.classList.contains("dark")){
+        console.log("Toggled dark");
+        toggleButton.style.backgroundColor = "black";
+        toggleButton.style.color = "white";
+        toggleButton.textContent = "Toggle To Light Mode";
+    }
+
+});

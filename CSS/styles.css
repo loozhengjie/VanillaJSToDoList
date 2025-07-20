@@ -6,6 +6,7 @@
 :root{
     --red: rgb(202, 39, 39);
     --shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    --border-color: rgb(177, 173, 173);
 }
 
 button:focus, input:focus{
@@ -17,29 +18,22 @@ ul{
     padding-left: 0;
 }
 
-/* Debug */
-/* .debug-border{
-    border: 2px solid black;
-}
-
-.debug-border.red{
-    border: 2px solid red;
-}
-
-.debug-border.green{
-    border: 2px solid green;
-}
-
-.debug-border.blue{
-    border: 2px solid blue;
-} */
-
 /* Body defaults */
 body{
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+
+body.light{
+    background: white;
+    color: black;
+}
+
+body.dark{
+    background: black;
+    color: white;
 }
 
 /* Utility */
@@ -54,6 +48,18 @@ body{
 }
 
 /* Header */
+.header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.header__toggle{
+    border: 1px solid var(--border-color);
+    border-radius: 3px;
+    padding: 0.5em;
+}
+
 .header__logo{
     font-size: 5rem;
     color: var(--red);
